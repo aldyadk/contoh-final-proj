@@ -1,0 +1,42 @@
+nav.navbar a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+nav.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav.navbar li {
+  display: inline;
+  padding: 20px 40px;
+}
+
+/* nav.navbar li:hover {
+  background-color: #ff8100;
+  cursor: pointer;
+} */
+
+nav.navbar {
+  display: flex;
+}
+
+nav.navbar .one{
+  flex: 1
+}
+
+.rata-kanan{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.padding-kiri {
+  padding-left: 20px;
+}
+
+.latar-oranye{
+  background-color: #ff8100;
+}
