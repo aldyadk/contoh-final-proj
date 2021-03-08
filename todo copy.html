@@ -50,59 +50,27 @@
   </div>
 
   <script>
-    var data = localStorage.getItem('todo')
-    if(!data){
-      data = []
-    } else {
-      data = JSON.parse(data)
-    }
-    renderList()
-
     function addTask(){
       var source = document.getElementById('source')
       if(source.value === ''){
         return
       }
-      var obj = {
-        isChecked:false,
-        value: source.value,
-        number: data.length
-      }
-      data.push(obj)
-      renderList()
-    }
-
-    function renderList(){
-      localStorage.setItem('todo',JSON.stringify(data))
-      document.getElementById('target').innerHTML = ''
-      for(var i=0;i<data.length;i++){
-        renderChild(data[i])
-      }
-    } 
-
-    function renderChild(obj){
+      
       var div = document.createElement('div')
       div.className = 'form-check'
       var check = document.createElement('input')
       check.setAttribute('type','checkbox')
       check.className = 'form-check-input'
-      check.checked = obj.isChecked
       check.onchange = checkThis
-      check.value = obj.number
       var label = document.createElement('label')
-      label.textContent = obj.value
-      if(obj.isChecked){
-        label.className = 'form-check-label coret'
-      } else {
-        label.className = 'form-check-label'
-      }
+      label.textContent = source.value
+      label.className = 'form-check-label'
       var button = document.createElement('button')
       button.textContent = 'X'
       button.style.marginLeft = '15px'
       button.style.border = ''
       button.style.backgroundColor = 'red'
       button.style.color = 'white'
-      button.setAttribute('data-index',obj.number)
       button.onclick = deleteThis
       
       div.append(check,label,button)
@@ -114,15 +82,16 @@
 
 
     function checkThis(){
-      var index = parseInt(this.value)
-      data[index].isChecked = !data[index].isChecked
-      renderList()
+      var label = this.nextSibling
+      if(this.checked === true){
+        label.className = 'coret'
+      } else {
+        label.className = ''
+      }
     }
 
     function deleteThis(){
-      var index = parseInt(this.getAttribute('data-index'))
-      data.splice(index,1)
-      renderList()
+      this.parentElement.remove()
     }
   </script>
 
